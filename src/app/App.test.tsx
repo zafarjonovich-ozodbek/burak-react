@@ -1,10 +1,8 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import App from "./App";
-import { store } from "./store";
 
-test("renders Hello", () => {
+test("renders HOME", () => {
   const { getByText } = render(<App />);
-
-  expect(getByText("Hello")).toBeInTheDocument();
+  expect(getByText("HOME")).toBeTruthy();
 });
