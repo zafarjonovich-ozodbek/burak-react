@@ -1,5 +1,5 @@
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
-import { Link, Route, Switch, useLocation } from "react-router-dom";
+import { Link, Route, Switch, useLocation } from "react-router-dom"; // router'larni tashkillab olish uchun ext.package
 import { HomePage } from "./screens/homePage";
 import { ProductsPage } from "./screens/proudctsPage";
 import { OrdersPage } from "./screens/ordersPage";
@@ -10,14 +10,18 @@ import { Footer } from "./components/footer";
 import "../css/app.css";
 import "../css/navbar.css";
 import { HelpPage } from "./screens/helpPage";
+
 function App() {
-  const location = useLocation();
-  console.log("Locaiton:", location);
+  const location = useLocation(); // HOOK => use + Text
+
   return (
     <>
       {location.pathname === "/" ? <HomeNavbar /> : <OtherNavbar />}
       <Switch>
+        {" "}
+        {/* SWITCH - page'lar orasida otish imkonini beradi*/}
         <Route path="/products">
+          {/* ROUTE - ozini ichidagi component'ga jonatib beradi */}
           <ProductsPage />
         </Route>
         <Route path="/orders">
@@ -29,7 +33,7 @@ function App() {
         <Route path="/help">
           <HelpPage />
         </Route>
-        <Route path="/">
+        <Route path="/" exact>
           <HomePage />
         </Route>
       </Switch>
