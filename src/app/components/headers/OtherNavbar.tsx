@@ -1,8 +1,9 @@
 // COOMMON component = usebl component
 import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import Basket from "./Basket";
 
-export function OtherNavbar() {
+export default function OtherNavbar() {
   const authMember = null;
   return (
     <div className="other-navbar">
@@ -43,6 +44,7 @@ export function OtherNavbar() {
             </Box>
 
             {/* BUSKET */}
+            <Basket />
 
             {!authMember ? (
               <Box>
