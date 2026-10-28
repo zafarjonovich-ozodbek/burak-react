@@ -25,59 +25,65 @@ export default function PopularDishes() {
           <Box className="category-title">Popular Dishes</Box>
           <CssVarsProvider>
             <JoyStack direction="row" className="cards-frame">
-              {list.map((ele, index) => (
-                <Card className="card" key={index}>
-                  <CardCover>
-                    <img src={ele.imagePath} alt={ele.productName} />
-                  </CardCover>
-                  <CardCover className="card-cover" />
-                  <CardContent sx={{ justifyContent: "flex-end" }}>
-                    <JoyStack
-                      direction="row"
-                      sx={{ justifyContent: "space-between" }}
+              {list.length > 0 ? (
+                list.map((ele, index) => (
+                  <Card className="card" key={index}>
+                    <CardCover>
+                      <img src={ele.imagePath} alt={ele.productName} />
+                    </CardCover>
+                    <CardCover className="card-cover" />
+                    <CardContent sx={{ justifyContent: "flex-end" }}>
+                      <JoyStack
+                        direction="row"
+                        sx={{ justifyContent: "space-between" }}
+                      >
+                        <Typography
+                          level="h2"
+                          fontSize="lg"
+                          textColor="#fff"
+                          mb={1}
+                        >
+                          {ele.productName}
+                        </Typography>
+                        <Typography
+                          sx={{
+                            fontWeight: "md",
+                            color: "neutral.300",
+                            alignItems: "center",
+                            display: "flex",
+                          }}
+                        >
+                          20
+                          <VisibilityIcon
+                            style={{ fontSize: 25, marginLeft: 5 }}
+                          />
+                        </Typography>
+                      </JoyStack>
+                    </CardContent>
+                    <CardOverflow
+                      sx={{
+                        display: "flex",
+                        gap: 1.5,
+                        py: 1.5,
+                        px: "var(--Card-padding)",
+                        borderTop: "1px solid",
+                        height: "60px",
+                      }}
                     >
                       <Typography
-                        level="h2"
-                        fontSize="lg"
-                        textColor="#fff"
-                        mb={1}
+                        startDecorator={<DescriptionOutlinedIcon />}
+                        textColor="neutral.300"
                       >
-                        {ele.productName}
+                        This is delicious meal
                       </Typography>
-                      <Typography
-                        sx={{
-                          fontWeight: "md",
-                          color: "neutral.300",
-                          alignItems: "center",
-                          display: "flex",
-                        }}
-                      >
-                        20
-                        <VisibilityIcon
-                          style={{ fontSize: 25, marginLeft: 5 }}
-                        />
-                      </Typography>
-                    </JoyStack>
-                  </CardContent>
-                  <CardOverflow
-                    sx={{
-                      display: "flex",
-                      gap: 1.5,
-                      py: 1.5,
-                      px: "var(--Card-padding)",
-                      borderTop: "1px solid",
-                      height: "60px",
-                    }}
-                  >
-                    <Typography
-                      startDecorator={<DescriptionOutlinedIcon />}
-                      textColor="neutral.300"
-                    >
-                      This is delicious meal
-                    </Typography>
-                  </CardOverflow>
-                </Card>
-              ))}
+                    </CardOverflow>
+                  </Card>
+                ))
+              ) : (
+                <div className="no-data">
+                  Popular products are not available!
+                </div>
+              )}
             </JoyStack>
           </CssVarsProvider>
         </Stack>
