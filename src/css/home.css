@@ -3,7 +3,8 @@
   height: auto;
 }
 
-/* STATISTICS */
+/** STATISTICS **/
+
 .homepage .static-frame {
   width: 100%;
   height: 236px;
@@ -19,12 +20,12 @@
 }
 
 .homepage .static-frame .info .static-box {
-  height: 116px;
   width: 200px;
+  height: 116px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .homepage .static-frame .info .static-box .static-num {
@@ -44,10 +45,11 @@
   font-style: normal;
   font-weight: 500;
   line-height: 30px;
-  color: #d7b686;
+  color: #d7b586;
 }
 
-/* POPULAR DISHES */
+/** POPULAR DISHES **/
+
 .homepage .popular-dishes-frame {
   width: 100%;
   height: 580px;
@@ -93,7 +95,22 @@
     linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 300px);
 }
 
-/* NEW PRODUCTS */
+.homepage .popular-dishes-frame .no-data {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 34px;
+  color: #e3c08d;
+}
+
+/** NEW PRODUCTS **/
 
 .homepage .new-products-frame {
   width: 100%;
@@ -161,7 +178,7 @@
   background-color: #fafbfb;
 }
 
-.homepage .new-products-framec .product-detail .info {
+.homepage .new-products-frame .product-detail .info {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -169,24 +186,24 @@
   align-items: center;
 }
 
-.homepage .new-products-framec .product-detail .title {
+.homepage .new-products-frame .product-detail .title {
   width: 65px;
   font-weight: 500;
 }
 
-.homepage .new-products-framec .product-detail .price {
+.homepage .new-products-frame .product-detail .price {
   margin-left: 10px;
   width: 20px;
   font-weight: 500;
 }
 
-.homepage .new-products-framec .product-detail .divider {
+.homepage .new-products-frame .product-detail .divider {
   margin: 0 10px 0 10px;
   width: 2px;
   background-color: #d9d9d9;
 }
 
-.homepage .new-products-framec .product-detail .views {
+.homepage .new-products-frame .product-detail .views {
   display: flex;
   align-items: center;
   font-weight: 500;
@@ -226,6 +243,7 @@
   transform: scale(1.5);
   overflow: hidden;
 }
+
 /** ACTIVE USERS **/
 
 .homepage .active-users-frame {
