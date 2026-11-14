@@ -1,0 +1,8 @@
+export const serverApi: string = `${process.env.REACT_APP_API_URL}`;
+
+export const Message = {
+  error1: "Something went wrong!",
+  error2: "Please login first!",
+  error3: "Please fulfill all inputs!",
+  error4: "Only images with jpeg, jpg, png format allowed!",
+};
