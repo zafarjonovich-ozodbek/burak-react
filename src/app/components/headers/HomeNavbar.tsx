@@ -11,13 +11,13 @@ export default function HomeNavbar() {
   const [value, setValue] = useState<boolean>(true);
 
   useEffect(() => {
-    console.log("componentDidMount", count);
+    console.log("componentDidMount", count); // DATA FETCH
     setCount(count + 1);
 
     return () => {
       console.log("componentWillUnmount");
     };
-  }, [value]);
+  }, [value]); // [velue] - componentDidUpdate
 
   /** HANDLERS */
   const buttonHandler = () => {

@@ -20,7 +20,6 @@ function App() {
     <>
       {location.pathname === "/" ? <HomeNavbar /> : <OtherNavbar />}
       <Switch>
-        {" "}
         {/* SWITCH - page'lar orasida otish imkonini beradi*/}
         <Route path="/products">
           {/* ROUTE - ozini ichidagi component'ga jonatib beradi */}
