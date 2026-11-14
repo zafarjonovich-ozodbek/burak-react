@@ -10,14 +10,21 @@ import Typography from "@mui/joy/Typography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 
-const list = [
-  { productName: "Lavash", imagePath: "/img/lavash.webp" },
-  { productName: "Cutlet", imagePath: "/img/cutlet.webp" },
-  { productName: "Kebab", imagePath: "/img/kebab.webp" },
-  { productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
-];
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrievePopularDishes } from "./selector";
+import { Product } from "../../../lib/types/product";
+import { serverApi } from "../../../lib/config";
+
+/** REDUX SLICE & SELECTOR*/
+const popularDishesRetriever = createSelector(
+  retrievePopularDishes,
+  (popularDishes) => ({ popularDishes }),
+);
 
 export default function PopularDishes() {
+  const { popularDishes } = useSelector(popularDishesRetriever);
+
   return (
     <div className={"popular-dishes-frame"}>
       <Container>
@@ -25,60 +32,68 @@ export default function PopularDishes() {
           <Box className="category-title">Popular Dishes</Box>
           <CssVarsProvider>
             <JoyStack direction="row" className="cards-frame">
-              {list.length > 0 ? (
-                list.map((ele, index) => (
-                  <Card className="card" key={index}>
-                    <CardCover>
-                      <img src={ele.imagePath} alt={ele.productName} />
-                    </CardCover>
-                    <CardCover className="card-cover" />
-                    <CardContent sx={{ justifyContent: "flex-end" }}>
-                      <JoyStack
-                        direction="row"
-                        sx={{ justifyContent: "space-between" }}
+              {popularDishes.length > 0 ? (
+                popularDishes.map((ele: Product) => {
+                  const imagePath = ele.productImages[0]
+                    ? `${serverApi}/${ele.productImages[0]}`
+                    : undefined;
+
+                  return (
+                    <Card className="card" key={ele._id}>
+                      <CardCover>
+                        {imagePath && (
+                          <img src={imagePath} alt={ele.productName} />
+                        )}
+                      </CardCover>
+                      <CardCover className="card-cover" />
+                      <CardContent sx={{ justifyContent: "flex-end" }}>
+                        <JoyStack
+                          direction="row"
+                          sx={{ justifyContent: "space-between" }}
+                        >
+                          <Typography
+                            level="h2"
+                            fontSize="lg"
+                            textColor="#fff"
+                            mb={1}
+                          >
+                            {ele.productName}
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontWeight: "md",
+                              color: "neutral.300",
+                              alignItems: "center",
+                              display: "flex",
+                            }}
+                          >
+                            {ele.productViews}
+                            <VisibilityIcon
+                              style={{ fontSize: 25, marginLeft: 5 }}
+                            />
+                          </Typography>
+                        </JoyStack>
+                      </CardContent>
+                      <CardOverflow
+                        sx={{
+                          display: "flex",
+                          gap: 1.5,
+                          py: 1.5,
+                          px: "var(--Card-padding)",
+                          borderTop: "1px solid",
+                          height: "60px",
+                        }}
                       >
                         <Typography
-                          level="h2"
-                          fontSize="lg"
-                          textColor="#fff"
-                          mb={1}
+                          startDecorator={<DescriptionOutlinedIcon />}
+                          textColor="neutral.300"
                         >
-                          {ele.productName}
+                          {ele.productDesc}
                         </Typography>
-                        <Typography
-                          sx={{
-                            fontWeight: "md",
-                            color: "neutral.300",
-                            alignItems: "center",
-                            display: "flex",
-                          }}
-                        >
-                          20
-                          <VisibilityIcon
-                            style={{ fontSize: 25, marginLeft: 5 }}
-                          />
-                        </Typography>
-                      </JoyStack>
-                    </CardContent>
-                    <CardOverflow
-                      sx={{
-                        display: "flex",
-                        gap: 1.5,
-                        py: 1.5,
-                        px: "var(--Card-padding)",
-                        borderTop: "1px solid",
-                        height: "60px",
-                      }}
-                    >
-                      <Typography
-                        startDecorator={<DescriptionOutlinedIcon />}
-                        textColor="neutral.300"
-                      >
-                        This is delicious meal
-                      </Typography>
-                    </CardOverflow>
-                  </Card>
-                ))
+                      </CardOverflow>
+                    </Card>
+                  );
+                })
               ) : (
                 <div className="no-data">
                   Popular products are not available!
