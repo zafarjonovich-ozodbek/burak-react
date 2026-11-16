@@ -13,8 +13,9 @@ import "../css/footer.css";
 import HelpPage from "./screens/helpPage";
 import Test from "./screens/Test";
 
+// PAGElarimizning "ROUTER"larini tashkillab olyapmiz
 function App() {
-  const location = useLocation(); // HOOK => use + Text
+  const location = useLocation(); // location - qaysi page'da ekanligimizni aniqlash uchun ishlatiladi
 
   return (
     <>
