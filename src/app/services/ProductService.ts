@@ -19,7 +19,6 @@ class ProductService {
       if (input.search) url += `&search=${input.search}`; // agar 'input'da "search" bolsa "URL"ga "inp.search"ni qo'shsin
 
       const result = await axios.get(url); //axios — FRONTENDdan BACKENDga HTTP so‘rov yuborish va javobni olish uchun
-      console.log("getProducts:", result);
 
       return result.data; // result = "URL" | result.data = "URL.data"(url'dan kelayotkan info)
     } catch (err) {

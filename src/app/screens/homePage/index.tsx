@@ -44,11 +44,10 @@ export default function HomePage() {
 
     product
       .getProducts({
-        // input'dagi "data"lar
         page: 1,
         limit: 4,
         order: "createdAt",
-        productCollection: ProductCollection.DISH,
+        // productCollection: ProductCollection.DISH,
       })
       .then((data) => setNewDishes(data)) // action.+payload
       .catch((err) => console.error(err));
