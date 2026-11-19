@@ -10,7 +10,7 @@ export const store = configureStore({
   reducer: {
     // 'homePage slice'dagi "Reducers" => "Store"ga bog'landi
     homePage: HomePageReducer,
-    ProductsPageReducers,
+    productsPage: ProductsPageReducers,
   },
 });
 
