@@ -47,7 +47,7 @@ class MemberService {
 
       const member: Member = result.data.member;
       console.log("member:", member);
-      localStorage.setItem("memberData:", JSON.stringify(member));
+      localStorage.setItem("memberData", JSON.stringify(member));
 
       return member;
     } catch (err) {
@@ -64,11 +64,24 @@ class MemberService {
 
       const member: Member = result.data.member;
       console.log("member:", member);
-      localStorage.setItem("memberData:", JSON.stringify(member));
+      localStorage.setItem("memberData", JSON.stringify(member));
 
       return member;
     } catch (err) {
       console.log("ERROR, login:", err);
+      throw err;
+    }
+  }
+
+  public async logout(): Promise<void> {
+    try {
+      const url = this.path + "/member/logout";
+      const result = await axios.post(url, {}, { withCredentials: true });
+      console.log("Logout:", result);
+
+      localStorage.removeItem("memberData");
+    } catch (err) {
+      console.log("ERROR, logout:", err);
       throw err;
     }
   }
