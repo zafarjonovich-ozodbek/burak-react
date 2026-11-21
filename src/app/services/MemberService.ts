@@ -1,6 +1,6 @@
 import axios from "axios";
 import { serverApi } from "../../lib/config";
-import { Member } from "../../lib/types/member";
+import { Member, MemberInput } from "../../lib/types/member";
 
 // MemberService.file - (DATA FETCH) Backend'dan "member data"ni olish uchun ishlatiladi
 class MemberService {
@@ -35,6 +35,23 @@ class MemberService {
       return result.data;
     } catch (err) {
       console.log("ERROR, getRestaurant:", err);
+      throw err;
+    }
+  }
+
+  public async signup(input: MemberInput): Promise<Member> {
+    try {
+      const url = this.path + "/member/signup";
+      const result = await axios.post(url, input, { withCredentials: true });
+      console.log("Signup:", result);
+
+      const member: Member = result.data.member;
+      console.log("member:", member);
+      localStorage.setItem("memberData:", JSON.stringify(member));
+
+      return member;
+    } catch (err) {
+      console.log("ERROR, signup:", err);
       throw err;
     }
   }
