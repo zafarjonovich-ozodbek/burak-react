@@ -16,7 +16,9 @@ const container = document.getElementById("root")!;
 const root = createRoot(container);
 root.render(
   <React.StrictMode>
+    {/* REDUX */}
     <Provider store={store}>
+      {/* CONTEXT */}
       <ContextProvider>
         <ThemeProvider theme={theme}>
           <CssBaseline />

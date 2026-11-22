@@ -22,3 +22,8 @@ const ContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 };
 
 export default ContextProvider;
+
+// CONTEXT - global xolatda malumotlarimizni oqishga yordam beradi. Xoxlagan "component"da chaqirib ishlatsak boladi
+
+//ContextProvider ma’lumotni saqlab, tarqatadi;
+//useGlobals() esa komponentlarga uni olish imkonini beradi.

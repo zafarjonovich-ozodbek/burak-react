@@ -15,3 +15,6 @@ export const useGlobals = () => {
   if (context === undefined) throw new Error("useGlobals within Provider");
   return context;
 };
+
+//ContextProvider ma’lumotni saqlab, tarqatadi;
+// useGlobals() esa komponentlarga uni olish imkonini beradi.

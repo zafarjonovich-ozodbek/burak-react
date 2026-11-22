@@ -6,6 +6,9 @@ const useBasket = () => {
   const currentCart = cartJson ? JSON.parse(cartJson) : [];
   const [cartItems, setCartItems] = useState<CartItem[]>(currentCart);
 
+  // Agar DataBase'dan malumot olib kelib oqish kerak bolsa "useEffect"ni ihslatamiz
+  // ...
+
   /** HANDLERS */
   const onAdd = (input: CartItem) => {
     const exist: any = cartItems.find(
@@ -18,12 +21,12 @@ const useBasket = () => {
           ? { ...exist, quantity: exist.quantity + 1 }
           : item,
       );
-      setCartItems(cartUpdate);
-      localStorage.setItem("cartData", JSON.stringify(cartUpdate));
+      setCartItems(cartUpdate); // A version(RENDER)
+      localStorage.setItem("cartData", JSON.stringify(cartUpdate)); //B version(L.Storage UPDATE)
     } else {
       const cartUpdate = [...cartItems, { ...input }];
-      setCartItems(cartUpdate);
-      localStorage.setItem("cartData", JSON.stringify(cartUpdate));
+      setCartItems(cartUpdate); // A version(RENDER)
+      localStorage.setItem("cartData", JSON.stringify(cartUpdate)); //B version(L.Storage UPDATE)
     }
   };
 
@@ -36,16 +39,16 @@ const useBasket = () => {
       const cartUpdate = cartItems.filter(
         (item: CartItem) => item._id !== input._id,
       );
-      setCartItems(cartUpdate);
-      localStorage.setItem("cartData", JSON.stringify(cartUpdate));
+      setCartItems(cartUpdate); // A version(RENDER)
+      localStorage.setItem("cartData", JSON.stringify(cartUpdate)); //B version(L.Storage UPDATE)
     } else {
       const cartUpdate = cartItems.map((item: CartItem) =>
         item._id === input._id
           ? { ...exist, quantity: exist.quantity - 1 }
           : item,
       );
-      setCartItems(cartUpdate);
-      localStorage.setItem("cartData", JSON.stringify(cartUpdate));
+      setCartItems(cartUpdate); // A version(RENDER)
+      localStorage.setItem("cartData", JSON.stringify(cartUpdate)); //B version(L.Storage UPDATE)
     }
   };
 
@@ -53,13 +56,13 @@ const useBasket = () => {
     const cartUpdate = cartItems.filter(
       (item: CartItem) => item._id !== input._id,
     );
-    setCartItems(cartUpdate);
-    localStorage.setItem("cartData", JSON.stringify(cartUpdate));
+    setCartItems(cartUpdate); // A version(RENDER)
+    localStorage.setItem("cartData", JSON.stringify(cartUpdate)); // B version(L.Storage UPDATE)
   };
 
   const onDeleteAll = () => {
-    setCartItems([]);
-    localStorage.removeItem("cartData");
+    setCartItems([]); // A version(RENDER) - basket' qismidagi productni ochiryapti
+    localStorage.removeItem("cartData"); // B version(L.Storage UPDATE) - local Storage' ning "cartData" malumotini ochiryapti
   };
 
   return {
@@ -71,3 +74,5 @@ const useBasket = () => {
   };
 };
 export default useBasket;
+
+// FUNCTION orqali " useBasket HOOK"ni yaratyapmiz - u bizga mantiqni qaytaryapti. Boshqa functionlardan farqi shu
