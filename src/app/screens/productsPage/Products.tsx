@@ -23,9 +23,10 @@ import { CartItem } from "../../../lib/types/search";
 
 /** REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
-  setProducts: (data: Product[]) => dispatch(setProducts(data)),
+  setProducts: (data: Product[]) => dispatch(setProducts(data)), // SLICEga qanday malumot yetib belihsini korsatyapmiz va NOMLAYABMIZ
 });
 const productsRetriever = createSelector(retrieveProducts, (products) => ({
+  // products - SELECTORga NOM beryapmiz
   products,
 }));
 
@@ -35,9 +36,10 @@ interface ProductsProps {
 
 export default function Products(props: ProductsProps) {
   const { onAdd } = props;
-  const { setProducts } = actionDispatch(useDispatch());
-  const { products } = useSelector(productsRetriever);
+  const { setProducts } = actionDispatch(useDispatch()); // SLICE NOMI bilan chaqirib ishlatyapmiz
+  const { products } = useSelector(productsRetriever); // SELECTOR NOMi bilan chaqirib ishlatyapmiz
   const [productSearch, setProductSearch] = useState<ProductInquiry>({
+    // productSearch - componentDidUpdate(xardoim update bolib yangi data olib kelishi uchun)
     page: 1,
     limit: 8,
     order: "createdAt",
@@ -47,10 +49,11 @@ export default function Products(props: ProductsProps) {
   const [searchText, setSearchText] = useState<string>("");
   const history = useHistory();
   useEffect(() => {
+    // 1 - DATA FETCH
     const prodcut = new ProductService();
     prodcut
       .getProducts(productSearch)
-      .then((data) => setProducts(data))
+      .then((data) => setProducts(data)) // 2 - REDUX SLICE[EHSMAT]
       .catch((err) => console.log(err));
   }, [productSearch]);
 
@@ -61,7 +64,9 @@ export default function Products(props: ProductsProps) {
     }
   }, [searchText]);
 
-  /** HANDLERS */
+  /** HANDLERS - foydalanuvchi biror narsani boskanda bajariladigan funksiya*/
+
+  // 3 - REDUX SELECTOR[TOSHMAT]
   const searchCollectionHandler = (collection: ProductCollection) => {
     productSearch.page = 1;
     productSearch.productCollection = collection;

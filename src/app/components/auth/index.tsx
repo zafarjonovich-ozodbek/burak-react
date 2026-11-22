@@ -75,7 +75,8 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
 
   const handleSignupRequest = async () => {
     try {
-      const isFulfill = memberNick !== "" && memberPassword !== "";
+      const isFulfill =
+        memberNick !== "" && memberPhone !== "" && memberPassword !== "";
       if (!isFulfill) throw new Error(Messages.error3);
 
       const signupInput: MemberInput = {
@@ -118,6 +119,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
 
   return (
     <div>
+      {/* signup */}
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -174,6 +176,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
         </Fade>
       </Modal>
 
+      {/* login */}
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
