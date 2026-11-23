@@ -55,7 +55,7 @@ export default function Basket(props: BasketProps) {
       onDeleteAll();
 
       // REFRESH VIA CONTEXT
-      setOrderBuilder(new Date());
+      setOrderBuilder(new Date()); // orderPage'da turgan xolarda order qilsakham togridan-togri 'paused order'ga jonatilishi uchun
 
       history.push("/orders");
     } catch (err) {

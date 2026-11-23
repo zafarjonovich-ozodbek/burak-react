@@ -17,7 +17,6 @@ import { sweetErrorHandling } from "../../../lib/sweetAlert";
 import { T } from "../../../lib/types/common";
 
 /** REDUX SLICE & SELECTOR*/
-// DEFINE "selector +data"
 const processOrdersRetriever = createSelector(
   retrieveProcessOrders,
   (processOrders) => ({ processOrders }), // selector
@@ -49,7 +48,7 @@ export default function ProcessOrders(props: ProcessOrdersProps) {
         const order = new OrderService();
         await order.updateOrder(input);
 
-        // => PROCESS
+        // PROCESS => FINISH(setValue=3)
         setValue("3");
 
         // ORDER BUILDER

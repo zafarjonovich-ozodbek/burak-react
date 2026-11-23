@@ -16,7 +16,6 @@ import OrderService from "../../services/OrderService";
 import { T } from "../../../lib/types/common";
 
 /** REDUX SLICE & SELECTOR*/
-// DEFINE "selector +data"
 const pausedOrdersRetriever = createSelector(
   retrievePausedOrders,
   (pausedOrders) => ({ pausedOrders }), // selector
@@ -46,7 +45,7 @@ export default function PausedOrders(props: PausedOrdersProps) {
         const order = new OrderService();
         await order.updateOrder(input);
 
-        // ORDER BUILDER
+        // ORDER BUILDER - 'button' bosilganda osha vaqt bilan "update" qilyapmiz
         setOrderBuilder(new Date());
       }
     } catch (err) {
@@ -73,8 +72,8 @@ export default function PausedOrders(props: PausedOrdersProps) {
         const order = new OrderService();
         await order.updateOrder(input);
 
-        // => PROCESS
-        setValue("2");
+        // PAUSE(setValue=1) => PROCESS(setValue=2)
+        setValue("2"); //index.tsx dan "PROPS" uzatilyapti
 
         // ORDER BUILDER
         setOrderBuilder(new Date());

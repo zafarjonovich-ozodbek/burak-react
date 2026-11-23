@@ -37,6 +37,7 @@ export default function OrdersPage() {
   useEffect(() => {
     const order = new OrderService();
 
+    // DATA FETCH
     order
       .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.PAUSE })
       .then((data) => setPausedOrders(data))
@@ -51,7 +52,7 @@ export default function OrdersPage() {
       .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.FINISH })
       .then((data) => setFinishedOrders(data))
       .catch((err) => console.log(err));
-  }, [orderInquiry, orderBuilder]);
+  }, [orderInquiry, orderBuilder]); // "orderBuilder" yangilansa =>  'page refresh'
 
   /** HANDLERS */
   const handleChange = (e: SyntheticEvent, newValue: string) => {

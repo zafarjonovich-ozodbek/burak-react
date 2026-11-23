@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Stack } from "@mui/material"; //@ts-ignore
 import TabPanel from "@mui/lab/TabPanel";
-
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveFinishedOrders } from "./selector"; // selector
@@ -10,7 +9,6 @@ import { serverApi } from "../../../lib/config";
 import { Order, OrderItem } from "../../../lib/types/order";
 
 /** REDUX SLICE & SELECTOR*/
-// DEFINE "selector +data"
 const finishedOrdersRetriever = createSelector(
   retrieveFinishedOrders,
   (finishedOrders) => ({ finishedOrders }), // selector
